@@ -45,100 +45,61 @@ struct ContentView: View {
                     //creating coming weather information for next days...
                     
                     VStack{
-                        HStack(spacing:20){
-                            Text("TUE")
-                            Text("WED")
-                            Text("THU")
-                            Text("FRI")
-                            Text("SAT")
-        
-                        }
-                        //giving all texts colors of white
-                        .foregroundColor(.white)
-                        .font(.system(size: 20))
-                        
+                  
                         HStack(spacing:21){
                             //expected temperature for each day and image state
-                            //styling all images gives them multi color and resize them
-                            VStack{
-                                
-                                Image(systemName: "cloud.bolt.rain.fill")
-                                    .resizable()
-                                    .renderingMode(.original)
-                                    .frame(width: 35, height: 35, alignment: .center)
-                                    .aspectRatio(contentMode: .fit)
-                                
-                                Text("76°")
-                                    .font(.system(size: 20))
-                                    .foregroundColor(.white)
-                                
-                            }
-                            VStack{
-                                Image(systemName: "cloud.sleet.fill")
-                                    .resizable()
-                                    .renderingMode(.original)
-                                    .frame(width: 35, height: 35, alignment: .center)
-                                    .aspectRatio(contentMode: .fit)
-                                Text("55°")
-                                    .font(.system(size: 20))
-                                    .foregroundColor(.white)
-                                
-                            }
-                      
-                            
-                          
-                        VStack{
-                            Image(systemName:"sun.dust.fill")
-                                .resizable()
-                                .renderingMode(.original)
-                                .frame(width: 35, height: 35, alignment: .center)
-                                .aspectRatio(contentMode: .fit)
-                            
-                            Text("20°")
-                                .font(.system(size: 20))
-                                .foregroundColor(.white)
+                            upComingView(day: "TUE", image: "cloud.bolt.rain.fill", degree: "76°")
+                            upComingView(day: "WED", image: "cloud.rain.fill", degree: "26°")
+                            upComingView(day: "THU", image: "cloud.moon.rain.fill", degree: "46°")
+                            upComingView(day: "FRI", image: "cloud.bolt.rain.fill", degree: "56°")
+                            upComingView(day: "SAT", image: "cloud.bolt.rain.fill", degree: "24°")
+                              
                         }
-                        
-                        VStack{
-                            Image(systemName: "sun.max.fill")
-                                .resizable()
-                                .renderingMode(.original)
-                                .frame(width: 35, height: 35, alignment: .center)
-                                .aspectRatio(contentMode: .fit)
-                            Text("30°")
-                                .font(.system(size: 20))
-                                .foregroundColor(.white)
-                        }
-                        VStack{
-                            Image(systemName:"cloud.sleet.fill")
-                                .resizable()
-                                .renderingMode(.original)
-                                .frame(width: 35, height: 35, alignment: .center)
-                                .aspectRatio(contentMode: .fit)
-                            Text("43°")
-                                .font(.system(size: 20))
-                                .foregroundColor(.white)
-                        }
+                        .padding()
                             
                             
                         }
-                        .padding(.horizontal)
+                        .padding()
                     
-                       
-
-                    }.padding()
-                 
+                    }
+                .padding()
+                Spacer()
                 }
-                    Spacer()
-                
+                  
             }
+       
         }
-  
-    
+
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
-}}
+}
+
+struct upComingView: View {
+    @State var day: String = "TUE"
+    @State var image: String = "cloud.bolt.rain.fill"
+    @State var degree: String = "76°"
+    var body: some View {
+        
+        //styling all images gives them multi color and resize them
+        VStack{
+            Text("\(day)")
+                .foregroundColor(.white)
+                .font(.system(size: 20))
+            
+            Image(systemName: "\(image)")
+                .resizable()
+                .renderingMode(.original)
+                .frame(width: 40, height: 40, alignment: .center)
+                .aspectRatio(contentMode: .fit)
+            
+            Text("\(degree)")
+                .font(.system(size: 20))
+                .foregroundColor(.white)
+            
+        }
+    }
+}
