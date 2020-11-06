@@ -40,6 +40,93 @@ struct ContentView: View {
                     Text("76°")
                         .foregroundColor(.white)
                         .font(.system(size: 50))
+                    
+                    
+                    //creating coming weather information for next days...
+                    
+                    VStack{
+                        HStack(spacing:20){
+                            Text("TUE")
+                            Text("WED")
+                            Text("THU")
+                            Text("FRI")
+                            Text("SAT")
+        
+                        }
+                        //giving all texts colors of white
+                        .foregroundColor(.white)
+                        .font(.system(size: 20))
+                        
+                        HStack(spacing:21){
+                            //expected temperature for each day and image state
+                            //styling all images gives them multi color and resize them
+                            VStack{
+                                
+                                Image(systemName: "cloud.bolt.rain.fill")
+                                    .resizable()
+                                    .renderingMode(.original)
+                                    .frame(width: 35, height: 35, alignment: .center)
+                                    .aspectRatio(contentMode: .fit)
+                                
+                                Text("76°")
+                                    .font(.system(size: 20))
+                                    .foregroundColor(.white)
+                                
+                            }
+                            VStack{
+                                Image(systemName: "cloud.sleet.fill")
+                                    .resizable()
+                                    .renderingMode(.original)
+                                    .frame(width: 35, height: 35, alignment: .center)
+                                    .aspectRatio(contentMode: .fit)
+                                Text("55°")
+                                    .font(.system(size: 20))
+                                    .foregroundColor(.white)
+                                
+                            }
+                      
+                            
+                          
+                        VStack{
+                            Image(systemName:"sun.dust.fill")
+                                .resizable()
+                                .renderingMode(.original)
+                                .frame(width: 35, height: 35, alignment: .center)
+                                .aspectRatio(contentMode: .fit)
+                            
+                            Text("20°")
+                                .font(.system(size: 20))
+                                .foregroundColor(.white)
+                        }
+                        
+                        VStack{
+                            Image(systemName: "sun.max.fill")
+                                .resizable()
+                                .renderingMode(.original)
+                                .frame(width: 35, height: 35, alignment: .center)
+                                .aspectRatio(contentMode: .fit)
+                            Text("30°")
+                                .font(.system(size: 20))
+                                .foregroundColor(.white)
+                        }
+                        VStack{
+                            Image(systemName:"cloud.sleet.fill")
+                                .resizable()
+                                .renderingMode(.original)
+                                .frame(width: 35, height: 35, alignment: .center)
+                                .aspectRatio(contentMode: .fit)
+                            Text("43°")
+                                .font(.system(size: 20))
+                                .foregroundColor(.white)
+                        }
+                            
+                            
+                        }
+                        .padding(.horizontal)
+                    
+                       
+
+                    }.padding()
                  
                 }
                     Spacer()
@@ -47,11 +134,11 @@ struct ContentView: View {
             }
         }
   
-    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
-}
+}}
