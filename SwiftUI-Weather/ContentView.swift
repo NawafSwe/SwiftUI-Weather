@@ -20,27 +20,29 @@ struct ContentView: View {
                     .font(.system(size:32))
                     .foregroundColor(.white)
                     .padding()
-                    Spacer()
                 
                 //VStack holds the temp State and the temp Degree
                 VStack{
                     //temperature state
-                    Image(systemName: "cloud.bolt.rain")
+                    Image(systemName: "cloud.sun.bolt.fill")
+                        //renderMode with .original will give multi color sf symbol
+                        .renderingMode(.original)
+                        //to resize image
                         .resizable()
-                        .font(.system(size:20))
-                        .foregroundColor(.white)
+                        //making sure the quality of the image good
+                        .aspectRatio(contentMode: .fit)
+                        //give the picture a frame
                         .frame(width: 150, height: 150, alignment: .center)
+                        .font(.system(size:20))
                         .padding()
                     
                     //temperature degree
-                    Text("76C")
+                    Text("76°")
                         .foregroundColor(.white)
                         .font(.system(size: 50))
-                    Spacer()
+                 
                 }
-  
-                
-                
+                    Spacer()
                 
             }
         }
