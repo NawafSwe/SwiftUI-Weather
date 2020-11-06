@@ -43,16 +43,15 @@ struct ContentView: View {
                     
                     
                     //creating coming weather information for next days...
-                    
+                
                     VStack{
-                  
                         HStack(spacing:21){
                             //expected temperature for each day and image state
-                            upComingView(day: "TUE", image: "cloud.bolt.rain.fill", degree: "76°")
-                            upComingView(day: "WED", image: "cloud.rain.fill", degree: "26°")
-                            upComingView(day: "THU", image: "cloud.moon.rain.fill", degree: "46°")
-                            upComingView(day: "FRI", image: "cloud.bolt.rain.fill", degree: "56°")
-                            upComingView(day: "SAT", image: "cloud.bolt.rain.fill", degree: "24°")
+                            UpComingView(day: "TUE", image: "cloud.bolt.rain.fill", degree: "76°")
+                            UpComingView(day: "WED", image: "cloud.rain.fill", degree: "26°")
+                            UpComingView(day: "THU", image: "cloud.moon.rain.fill", degree: "46°")
+                            UpComingView(day: "FRI", image: "cloud.bolt.rain.fill", degree: "56°")
+                            UpComingView(day: "SAT", image: "cloud.bolt.rain.fill", degree: "24°")
                               
                         }
                         .padding()
@@ -61,6 +60,23 @@ struct ContentView: View {
                         }
                         .padding()
                     
+                    Button(action:{
+                        
+                    }){
+                        Text("Change Time Of Day")
+                            .font(.system(size: 16 , weight:.bold))
+                            .foregroundColor(.blue)
+                            .padding()
+                            .frame(width: 250)
+                    }
+                   
+                   
+                    
+                    .background(Color(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)))
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    //pushing the button a bit down 
+                    .padding(.vertical)
+                   
                     }
                 .padding()
                 Spacer()
@@ -78,7 +94,7 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-struct upComingView: View {
+struct UpComingView: View {
     @State var day: String = "TUE"
     @State var image: String = "cloud.bolt.rain.fill"
     @State var degree: String = "76°"
