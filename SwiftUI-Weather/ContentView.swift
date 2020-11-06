@@ -12,34 +12,14 @@ struct ContentView: View {
         //making alignment .top to make the VStack on top of the background
         ZStack {
             //making a background color
-            LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)), Color(#colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1))]), startPoint: .bottomTrailing, endPoint: .topLeading)
-                .edgesIgnoringSafeArea(.all)
+            BackgroundView(topColor: Color(#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)), bottomColor: Color(#colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)))
             VStack{
-                Text("Cupertino, CA")
-                    .font(.title)
-                    .font(.system(size:32))
-                    .foregroundColor(.white)
-                    .padding()
-                
+            
+                CityTextView(cityName: "Cupertino, CA")
                 //VStack holds the temp State and the temp Degree
                 VStack{
-                    //temperature state
-                    Image(systemName: "cloud.sun.bolt.fill")
-                        //renderMode with .original will give multi color sf symbol
-                        .renderingMode(.original)
-                        //to resize image
-                        .resizable()
-                        //making sure the quality of the image good
-                        .aspectRatio(contentMode: .fit)
-                        //give the picture a frame
-                        .frame(width: 150, height: 150, alignment: .center)
-                        .font(.system(size:20))
-                        .padding()
-                    
-                    //temperature degree
-                    Text("76°")
-                        .foregroundColor(.white)
-                        .font(.system(size: 50))
+                    CurrentState(degree: "76°", image: "cloud.sun.bolt.fill")
+
                     
                     
                     //creating coming weather information for next days...
@@ -59,35 +39,18 @@ struct ContentView: View {
                             
                         }
                         .padding()
-                    
-                    Button(action:{
-                        
-                    }){
-                        Text("Change Time Of Day")
-                            .font(.system(size: 16 , weight:.bold))
-                            .foregroundColor(.blue)
-                            .padding()
-                            .frame(width: 250)
-                    }
-                   
-                   
-                    
-                    .background(Color(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)))
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
-                    //pushing the button a bit down 
-                    .padding(.vertical)
-                   
+
                     }
                 .padding()
                 Spacer()
+                
+                ChangeTimeButtonView()
+                //push button up
+                Spacer()
                 }
-                  
             }
-       
         }
-
 }
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
@@ -95,9 +58,9 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct UpComingView: View {
-    @State var day: String = "TUE"
-    @State var image: String = "cloud.bolt.rain.fill"
-    @State var degree: String = "76°"
+    var day: String = "TUE"
+     var image: String = "cloud.bolt.rain.fill"
+     var degree: String = "76°"
     var body: some View {
         
         //styling all images gives them multi color and resize them
@@ -117,5 +80,69 @@ struct UpComingView: View {
                 .foregroundColor(.white)
             
         }
+    }
+}
+
+struct BackgroundView: View {
+    var topColor : Color
+    var bottomColor : Color
+    var body: some View {
+        LinearGradient(gradient: Gradient(colors: [topColor, bottomColor]), startPoint: .bottomTrailing, endPoint: .topLeading)
+            .edgesIgnoringSafeArea(.all)
+    }
+}
+struct CityTextView:View{
+    var cityName: String
+    var body:some View{
+        Text("\(cityName)")
+            .font(.title)
+            .font(.system(size:32))
+            .foregroundColor(.white)
+            .padding()
+    }
+}
+
+struct CurrentState: View {
+    var degree: String
+    var image: String
+    var body: some View {
+        VStack{
+            //temperature state
+            Image(systemName: "\(image)")
+                //renderMode with .original will give multi color sf symbol
+                .renderingMode(.original)
+                //to resize image
+                .resizable()
+                //making sure the quality of the image good
+                .aspectRatio(contentMode: .fit)
+                //give the picture a frame
+                .frame(width: 150, height: 150, alignment: .center)
+                .font(.system(size:20))
+                .padding()
+            
+            //temperature degree
+            Text("\(degree)")
+                .foregroundColor(.white)
+                .font(.system(size: 50))
+        }
+    }
+}
+
+struct ChangeTimeButtonView: View {
+    var body: some View {
+        Button(action:{
+            
+        }){
+            Text("Change Time Of Day")
+                .font(.system(size: 16 , weight:.bold))
+                .foregroundColor(.blue)
+                .padding()
+                .frame(width: 250)
+        }
+        
+        .background(Color(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)))
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+        //pushing the button a bit down
+        .padding(.vertical)
     }
 }
