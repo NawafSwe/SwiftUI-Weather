@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isNight = false
     var body: some View {
         //making alignment .top to make the VStack on top of the background
         ZStack {
             //making a background color
-            BackgroundView(topColor: Color(#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)), bottomColor: Color(#colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)))
+            BackgroundView(isNight: self.$isNight, topColor: self.isNight ? .black : Color(#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)),  bottomColor: self.isNight ? Color(#colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)) : Color(#colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)))
             VStack{
             
                 CityTextView(cityName: "Cupertino, CA")
@@ -44,7 +45,7 @@ struct ContentView: View {
                 .padding()
                 Spacer()
                 
-                ChangeTimeButtonView()
+                ChangeTimeButtonView(toggleDay: self.$isNight)
                 //push button up
                 Spacer()
                 }
@@ -84,10 +85,11 @@ struct UpComingView: View {
 }
 
 struct BackgroundView: View {
+    @Binding var isNight : Bool
     var topColor : Color
     var bottomColor : Color
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: [topColor, bottomColor]), startPoint: .bottomTrailing, endPoint: .topLeading)
+        LinearGradient(gradient: Gradient(colors: [ self.isNight ? .black :  self.isNight ? .white : topColor , bottomColor]), startPoint: .bottomTrailing, endPoint: .topLeading)
             .edgesIgnoringSafeArea(.all)
     }
 }
@@ -129,8 +131,11 @@ struct CurrentState: View {
 }
 
 struct ChangeTimeButtonView: View {
+    @Binding var toggleDay : Bool
+    
     var body: some View {
         Button(action:{
+            self.toggleDay.toggle()
             
         }){
             Text("Change Time Of Day")
